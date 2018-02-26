@@ -1,116 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>WebDraw</title>
-	<meta charset="utf-8">
-	<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="/CSS/index.css">
-	<script type="text/javascript" src="/JS/SelectorClass.js"></script>
-	<script type="text/javascript" src="/JS/CanvasClass.js"></script>
-	<script type="text/javascript" src="/JS/ShapeClass.js"></script>
-	<script type="text/javascript" src="/JS/paint.js"></script>
-</head>
-<body onload="init()">
+	<head>
+		
+		<title>WebDraw</title>
+		<meta charset="utf-8">
+		<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="/CSS/index.css">
+		<script type="text/javascript" src="/JS/SelectorClass.js"></script>
+		<script type="text/javascript" src="/JS/CanvasClass.js"></script>
+		<script type="text/javascript" src="/JS/ShapeClass.js"></script>
+		<script type="text/javascript" src="/JS/paint.js"></script>
 
-	<header>
-		<h1>WebDraw</h1>
-		<nav>
-			<a href="https://maxdevos49.github.io/ThatOneSpot/">Home</a>
-			<a href="https://maxdevos49.github.io/ThatOneSpot/Games/index.html">Games</a>
-			<a href="https://maxdevos49.github.io/ThatOneSpot/Resume.html">Resume</a>
-			<a href="#">Login</a>
-		</nav>
-	</header>
-	
+	</head>
+	<body onload="init()">
 
-	<div id="editor">
+		<header>
+			<h1>WebDraw</h1>
+			<nav>
+				<a href="https://maxdevos49.github.io/ThatOneSpot/">Home</a>
+				<a href="https://maxdevos49.github.io/ThatOneSpot/Games/index.html">Games</a>
+				<a href="https://maxdevos49.github.io/ThatOneSpot/Resume.html">Resume</a>
+				<a href="#">Login</a>
+			</nav>
+		</header>
+		
 
-		<aside id="generalSelector"></aside>
-		<div id="canvasContainer"></div>
-		<aside id="attributeSelector"></aside>
+		<div id="editor">
 
-		<!-- <aside id="generalSelector">
+			<aside id="generalSelector"></aside>
+			<div id="canvasContainer"></div>
+			<aside id="attributeSelector"></aside>
 
-			<h4 onclick="toggleCollapse(1)"><span id="toggleArrow1" class="toggleArrow">&#9654;</span>General</h4>
-			<div style="display: none;" id="toggle1">
-				<p><a href="#" id="download" download="myWebDrawing.png">Download Image</a></p>
-				<p>Canvas Size</p>
-				<p>Width:<input onkeyup="updateCanvas(1)" id="canvasSizex" type="text" value="700">px</p>
-				<p>Height: <input onkeyup="updateCanvas(2)" id="canvasSizey" type="text" value="500">px</p>
-				<p><button onclick="showGrid()">Show/Hide Transparent Grid</button></p>
-			</div>
-
-			<h4 onclick="toggleCollapse(2)"><span id="toggleArrow2" class="toggleArrow">&#9654;</span>Shapes</h4>
-			<div style="display: none;" id="toggle2">
-				<div>
-					<p>Rectangle, circle, Star, and Triangle</p>
-				</div>
-				<p>New Shape Size:</p>
-				<p><input type="text" id="currentShapeW" value="100">px</p>
-				<p><input type="text" id="currentShapeH" value="100">px</p>
-
-				<p>New Shape Position:</p>
-				<p><input type="text" id="currentShapePx" value="100">px</p>
-				<p><input type="text" id="currentShapePy" value="100">px</p>
-
-				<p>New Shape Rotation:</p>
-				<p><input type="text" id="currentShapeR" value="0">degrees</p>
-			</div>	
-
-			<h4 onclick="toggleCollapse(3)"><span id="toggleArrow3" class="toggleArrow">&#9654;</span>Color</h4>
-			<div style="display: none;" id="toggle3">
-				<p>New Shape Color:</p>
-				<p><input type="color" id="currentShapeC"><button onclick="setColor()">Submit</button></p>
-				<p>gradients
-				darkness
-				transparent</p>
-			</div>	
-
-			<h4 onclick="toggleCollapse(4)"><span id="toggleArrow4" class="toggleArrow">&#9654;</span>DangerZone</h4>
-			<div style="display: none;" id="toggle4">
-				<p><button onclick="resetCanvas()">Reset Canvas</button></p>
-			</div>	
-
-		</aside>
-
-
-		<div class="canvasContainer">
-			<div id="mydiv">
-			  	<div id="mydivheader">Click here to move</div>
-			 	<canvas id="canvasFrame" height="500px" width="700px">You Shouldnt see this!!</canvas>
-			</div>
 		</div>
 
-		<aside id="attributeSelector">
-			<h4>Attributes</h4>
-			<h4 onclick="toggleCollapse(5)"><span id="toggleArrow5" class="toggleArrow">&#9654;</span>Shape</h4>
-			
-			<div style="display: none;" id="toggle5">
-				<p>Selected Shape Size:</p>
-				<p><input type="text" id="currentShapeW" value="100">px</p>
-				<p><input type="text" id="currentShapeH" value="100">px</p>
+		<footer><p>&copy; Maxwell DeVos <a href="#">About</a> <a href="#">Help</a></p></footer>
 
-				<p>Selected Shape Position:</p>
-				<p><input type="text" id="currentShapePx" value="100">px</p>
-				<p><input type="text" id="currentShapePy" value="100">px</p>
-
-				<p>Selected Shape Rotation:</p>
-				<p><input type="text" id="currentShapeR" value="0">degrees</p>
-			</div>
-			<h4 onclick="toggleCollapse(6)"><span id="toggleArrow6" class="toggleArrow">&#9654;</span>Color</h4>
-			<div style="display: none;" id="toggle6">
-				<p>Selected Shape Color:</p>
-				<p><input type="color" id="currentShapeC"></p>
-				<p>gradients
-				darkness
-				transparent</p>
-			</div>	
-			
-		</aside> -->
-	</div>
-
-	<footer><p>&copy; Maxwell DeVos <a href="#">About</a> <a href="#">Help</a></p></footer>
-
-</body>
+	</body>
 </html>
