@@ -14,7 +14,7 @@ const ip = require('ip');
 server.listen(8080);
 
 //tell console the server is running
-console.log(`Paint Server Started!! IP is ${ip.address()} `);
+console.log(`Paint Server Started!! IP is ${ip.address()}:8080`);
 
 //tell where to find page depended info. css/javascript/images/audio/and other stuff
 app.use(express.static('public'));

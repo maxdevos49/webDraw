@@ -2,6 +2,9 @@
 // jshint esversion: 6 
 "use strict";
 
+/**
+*
+*/
 class Selector {
 
 	constructor(title,asideId,objectName){
@@ -11,10 +14,12 @@ class Selector {
 		this.name = objectName;
 	}
 
+	//use -> obj.showSelector();
 	showSelector(){
 		this.aside.innerHTML += `<h4 onClick="${this.name}.toggleView()"><span id="${this.name}Arrow" class="toggleArrow">&#9654;</span>${this.title}</h4><div style="display:none;" id="${this.name}Body"></div>`; 
 	}
 
+	//use -> obj.addtoggleView();
 	toggleView(){//show or hide a selectors contents
 		let selectedSelector = document.getElementById(`${this.name}Body`);
 		let toggleArrow = document.getElementById(`${this.name}Arrow`);
@@ -28,24 +33,43 @@ class Selector {
 	    }
 	}
 
+	//use -> obj.addHeading(<heading text>);
 	addHeading(heading){
-		console.log("I ran!!");
 		let selectorBody = document.getElementById(`${this.name}Body`);
 		selectorBody.innerHTML += `<h1>${heading}</h1>`;
 	}
 
-	addTextBox(){
-
+	//use -> obj.addTextBox(<id>);
+	addTextBox(id){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+		selectorBody.innerHTML += `<input id="${id}" type="text">`;
 	}
 
-	addParagraph(){
-
+	//use -> obj.addParagraph(<paragraph text>);
+	addParagraph(message){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+		selectorBody.innerHTML += `<p>${message}</p>`;
 	}
 
-	addButton(){
-		 
+	//use -> obj.addButton(<button title>, <button id>);
+	addButton(title,id){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+		selectorBody.innerHTML += `<button id="${id}">${title}</button>`;
 	}
 
+//    translate things below into this classß
+
+	// const setColor = () => {
+	//     currentColor = document.getElementById("currentShapeC").value;
+	//     console.log(currentColor);
+	// };
+
+    //event listeners
+    // let button = document.getElementById('download');
+    // button.addEventListener('click', (e) => {
+    //     let dataURL = canvasFrame.toDataURL('image/png');
+    //     button.href = dataURL;
+    // });
 	
 
 }
