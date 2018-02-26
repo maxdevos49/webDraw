@@ -1,0 +1,11 @@
+node_modules
+*.json
+*.DS_Store
+*.class
+*.java
+*.exe
+*.dmg
+*.jpg
+*.png
+*.jpeg
+
