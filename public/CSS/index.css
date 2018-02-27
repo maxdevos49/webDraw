@@ -82,12 +82,19 @@ p{
 	float: left;
 }
 
+.footerCords{
+	float:right;
+}
+
 #canvasContainer{
 	overflow: hidden;
 	/*width: 74vw;*/
 	flex-grow: 7;
 	height: 85vh;
 	background-color: #ebeef4;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
 }
 
 #attributeSelector h4{
@@ -122,9 +129,7 @@ p{
 	border-bottom-right-radius: 5px;
 	background-color: white;
 	z-index: 10;
-	padding: 0;
-	display: flex
-	font-size:0.5em;
+	padding: 2px;
 }
 /* width */
 ::-webkit-scrollbar {

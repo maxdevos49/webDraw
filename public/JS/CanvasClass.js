@@ -1,11 +1,12 @@
-/*global require:false, console:false, __dirname: false, document:false, window: false*/
+/*global require:false, console:false, __dirname: false, document:false, window: false, Selector: false, Canvas:false, moveElement: false*/
 // jshint esversion: 6 
+/*jslint node:true*/
 "use strict";
 
 
 class Canvas {
 
-	constructor(height,width,x,y,id){
+	constructor(width,height,x,y,id){
 
 		this.height = height;
 		this.width = width;
@@ -13,11 +14,13 @@ class Canvas {
 		this.y = 0;
 		this.id = id;
 		this.grid = true;
+		
 
 	}
 
 	createCanvas(){ 
-		document.getElementById("canvasContainer").innerHTML += `<div class="canvasWindow" id="${this.id}window"><div class="canvasHeader" id="${this.id}Header">Click here to move</div><canvas id="${this.id}" width="${this.width}" height="${this.height}"></canvas><div class="canvasFooter"><p>X:100px, Y: 234px</p></div></div>`;
+		document.getElementById("canvasContainer").innerHTML += `<div class="canvasWindow" id="${this.id}window"><div class="canvasHeader" id="${this.id}Header">Click here to move</div><canvas id="${this.id}" width="${this.width}" height="${this.height}"></canvas><div class="canvasFooter"><span class="footerCords">Mouse X:100px, Y: 234px</span></div></div>`;
+		moveElement.addNewElement(this.id);
 	}
 
 	deleteCanvas(){
@@ -39,10 +42,6 @@ class Canvas {
 
 	    this.grid = !this.grid;
 		
-	}
-
-	moveCanvas(){
-
 	}
 
 
