@@ -1,4 +1,4 @@
-/*global require:false, console:false, __dirname: false, document:false, window: false, Selector: false, Canvas:false*/
+/*global require:false, console:false, __dirname: false, document:false, window: false, Selector: false, Canvas:false,dragElement:false*/
 // jshint esversion: 6 
 /*jslint node:true*/
 "use strict";
@@ -18,7 +18,13 @@ const init = () => {
     //in the future make this work through json??  \/\/\/\/
     /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/General Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     generalSelector = new Selector("General", "generalSelector","generalSelector");//general selector
-    generalSelector.showSelector();
+    generalSelector.showSelector();//create the selector
+    generalSelector.addParagraph("Save Canvas:");
+
+    generalSelector.addParagraph("Canvas Size:");
+
+    generalSelector.addParagraph("Change Background:");
+
 
     shapeSelector = new Selector("Shapes", "generalSelector","shapeSelector");//shape selector
     shapeSelector.showSelector();
@@ -43,6 +49,8 @@ const init = () => {
     dragElement(document.getElementById(("canvasWindow")));
     canvas.drawCanvasRect();
     canvas.clearCanvas();
+    canvas.canvasBackground();
+    canvas.canvasBackground();
     
 };
 
