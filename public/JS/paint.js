@@ -38,8 +38,11 @@ const init = () => {
 
 
     //canvas test
-    canvas = new Canvas(800,600,0,0,"canvas");
+    canvas = new Canvas(600,400,0,0,"canvas");
     canvas.createCanvas();
+    dragElement(document.getElementById(("canvasWindow")));
+    canvas.drawCanvasRect();
+    canvas.clearCanvas();
     
 };
 

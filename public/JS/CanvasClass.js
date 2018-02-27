@@ -14,13 +14,14 @@ class Canvas {
 		this.y = 0;
 		this.id = id;
 		this.grid = true;
-		
-
 	}
 
 	createCanvas(){ 
-		document.getElementById("canvasContainer").innerHTML += `<div class="canvasWindow" id="${this.id}window"><div class="canvasHeader" id="${this.id}Header">Click here to move</div><canvas id="${this.id}" width="${this.width}" height="${this.height}"></canvas><div class="canvasFooter"><span class="footerCords">Mouse X:100px, Y: 234px</span></div></div>`;
-		moveElement.addNewElement(this.id);
+		document.getElementById("canvasContainer").innerHTML += `<div class="canvasWindow" id="${this.id}Window"><div class="canvasHeader" id="${this.id}Windowheader">Click here to move</div><canvas id="${this.id}" width="${this.width}" height="${this.height}"></canvas><div class="canvasFooter"><span class="footerCords">Mouse X: 100px, Y: 234px</span></div></div>`;
+		var canvasFrame = document.getElementById(this.id);
+		var context = canvasFrame.getContext("2d");
+
+		context.fillRect(100,100,100,100);
 	}
 
 	deleteCanvas(){
@@ -28,7 +29,9 @@ class Canvas {
 	}
 
 	clearCanvas(){
-		//canvas.clearRect(0, 0, canvasFrame.width, canvasFrame.height);
+		var canvasFrame = document.getElementById(this.id);
+		var context = canvasFrame.getContext("2d");
+		context.clearRect(0, 0, canvasFrame.width, canvasFrame.height);
 	}
 
 	canvasBackground(){//change the background of the canvas between white and transparent background
@@ -42,6 +45,12 @@ class Canvas {
 
 	    this.grid = !this.grid;
 		
+	}
+
+	drawCanvasRect(){
+		var canvasFrame = document.getElementById(this.id);
+		var context = canvasFrame.getContext("2d");
+		context.fillRect(300,200,100,100);
 	}
 
 
