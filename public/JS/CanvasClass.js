@@ -53,42 +53,6 @@ class Canvas {
 		context.fillRect(300,200,100,100);
 	}
 
-
-
-
-
- // const updateCanvas = (setting) => {
-
- //    if(setting === 1){//resize the width
- //        let input = document.getElementById("canvasSizex").value;
- //        if(input >= 10 && input < 1200){
- //            canvasFrame.width = input;
- //        }else if(input >= 1200){
- //            document.getElementById("canvasSizex").value = 900;
- //            canvasFrame.width = 1200;
- //        }else if(input == ""){
- //            //do nothing if empty
- //        }else if(input <= 0){
- //            document.getElementById("canvasSizex").value = 1;
- //            canvasFrame.width = 1;
- //        }
-
- //    }else if(setting === 2){//resize the height
- //        let input = document.getElementById("canvasSizey").value;
- //        if(input >= 10 && input < 800){
- //            canvasFrame.height = input;
- //        }else if(input >= 800){
- //            document.getElementById("canvasSizey").value = 700;
- //            canvasFrame.height = 800;
- //        }else if(input == ""){
- //            //do nothing if empty
- //        }else if(input <= 0){
- //            document.getElementById("canvasSizey").value = 1;
- //            canvasFrame.height = 1;
- //        }
- //    }
-    
- // };
 }
 
 

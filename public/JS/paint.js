@@ -4,7 +4,6 @@
 "use strict";
 
 //TODO
-//add more selector options
 //make shape drawing actually work
 //add color support
 //add editing of shapes
@@ -36,16 +35,30 @@ const init = () => {
     generalSelector = new Selector("General", "generalSelector","generalSelector");//general selector
     generalSelector.showSelector();//create the selector
     generalSelector.addParagraph("Save Canvas:");
-
+    generalSelector.addDownloadLink("download", "canvas", "download");
     generalSelector.addParagraph("Canvas Size:");
-    generalSelector.addWidthTextBox("canvasWidth", "canvas");
-    generalSelector.addHeightTextBox("canvasHeight", "canvas");
+    generalSelector.addWidthTextBox("canvasWidth", canvas.id, canvas.width);
+    generalSelector.addHeightTextBox("canvasHeight", canvas.id, canvas.height);
 
     generalSelector.addParagraph("Change Background:");
+    generalSelector.addButton("Change Background", "changeBackground", "canvas.canvasBackground()");
 
 
     shapeSelector = new Selector("Shapes", "generalSelector","shapeSelector");//shape selector
     shapeSelector.showSelector();
+    shapeSelector.addTableofButtons(
+    {
+        "header": "Shapes",
+        "shapes": [
+            {"shape": "rectangle"},
+            {"shape": "circle"},
+            {"shape": "square"},
+            {"shape": "star"}
+            ],
+        "data":""
+
+    }
+    );
 
     colorSelector = new Selector("Color", "generalSelector","colorSelector");//color selector
     colorSelector.showSelector();

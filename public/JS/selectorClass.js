@@ -52,20 +52,34 @@ class Selector {
 		selectorBody.innerHTML += `<p>${message}</p>`;
 	}
 
-	//use -> obj.addButton(<button title>, <button id>);
-	addButton(title,id){
+	//use -> obj.addButton(<button title>, <button id>,<action as a string>);
+	addButton(title, id, action){
 		let selectorBody = document.getElementById(`${this.name}Body`);
-		selectorBody.innerHTML += `<button id="${id}">${title}</button>`;
+		selectorBody.innerHTML += `<p><button id="${id}" onclick="${action}">${title}</button><p>`;
 	}
 
-	addWidthTextBox(id, targetId){
+	addWidthTextBox(id, targetId, value){
 		let selectorBody = document.getElementById(`${this.name}Body`);
-		selectorBody.innerHTML += `<p>Width:<input id="${id}" type="text" onkeypress="updateElement.width(${targetId}, document.getElementById(id).value)">px</p>`;
+		selectorBody.innerHTML += `<p>Width:<input id="${id}" type="text" value="${value}" onkeyup="updateElement.width(${targetId}, document.getElementById(id).value)">px</p>`;
 	}
 
-	addHeightTextBox(id, targetId){
+	addHeightTextBox(id, targetId, value){
 		let selectorBody = document.getElementById(`${this.name}Body`);
-		selectorBody.innerHTML += `<p>Height:<input id="${id}" type="text" onkeypress="updateElement.height(${targetId}, document.getElementById(id).value)">px</p>`;
+		selectorBody.innerHTML += `<p>Height:<input id="${id}" type="text" value="${value}" onkeyup="updateElement.height(${targetId}, document.getElementById(id).value)">px</p>`;
+	}
+
+	addDownloadLink(id, targetId, text){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+	selectorBody.innerHTML += `<p><a id="${id}" href="#" download="webDraw.png" onclick="dataURL=document.getElementById('${targetId}').toDataURL();document.getElementById('${id}').href = dataURL">${text}</a></p>`;
+
+	}
+
+	addTableofButtons(data){
+
+		for (var i = 0; i < data.length; ++i) {
+
+		}
+
 	}
 
 //    translate things below into this classß
@@ -75,12 +89,6 @@ class Selector {
 	//     console.log(currentColor);
 	// };
 
-    //event listeners
-    // let button = document.getElementById('download');
-    // button.addEventListener('click', (e) => {
-    //     let dataURL = canvasFrame.toDataURL('image/png');
-    //     button.href = dataURL;
-    // });
 	
 
 }

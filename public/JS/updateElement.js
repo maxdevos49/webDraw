@@ -6,14 +6,14 @@
 class updateElement{
 
 	static width(targetId,value){
-		console.log(targetId.id);
+		//console.log(targetId.id);
 		let element = document.getElementById(targetId.id);
-		console.log(element);
+		//console.log(element);
 		element.width = value;
 	}
 
 	static height(targetId,value){
-		let element = document.getElementById(targetId);
+		let element = document.getElementById(targetId.id);
 		element.height = value;
 	}
 }
