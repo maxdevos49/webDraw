@@ -58,6 +58,16 @@ class Selector {
 		selectorBody.innerHTML += `<button id="${id}">${title}</button>`;
 	}
 
+	addWidthTextBox(id, targetId){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+		selectorBody.innerHTML += `<p>Width:<input id="${id}" type="text" onkeypress="updateElement.width(${targetId}, document.getElementById(id).value)">px</p>`;
+	}
+
+	addHeightTextBox(id, targetId){
+		let selectorBody = document.getElementById(`${this.name}Body`);
+		selectorBody.innerHTML += `<p>Height:<input id="${id}" type="text" onkeypress="updateElement.height(${targetId}, document.getElementById(id).value)">px</p>`;
+	}
+
 //    translate things below into this classß
 
 	// const setColor = () => {

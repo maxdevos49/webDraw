@@ -3,6 +3,17 @@
 /*jslint node:true*/
 "use strict";
 
+//TODO
+//add more selector options
+//make shape drawing actually work
+//add color support
+//add editing of shapes
+//add a scripting option
+//multi canvas support
+//add layering support
+//further improve classes
+//release this!!! and make bank
+
 let generalSelector;
 let shapeSelector;
 let colorSelector;
@@ -15,6 +26,11 @@ let canvas;
 
 const init = () => {
 
+    //canvas Creation
+    canvas = new Canvas(600,400,0,0,"canvas");
+    canvas.createCanvas();
+    dragElement(document.getElementById(("canvasWindow")));
+
     //in the future make this work through json??  \/\/\/\/
     /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/General Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     generalSelector = new Selector("General", "generalSelector","generalSelector");//general selector
@@ -22,6 +38,8 @@ const init = () => {
     generalSelector.addParagraph("Save Canvas:");
 
     generalSelector.addParagraph("Canvas Size:");
+    generalSelector.addWidthTextBox("canvasWidth", "canvas");
+    generalSelector.addHeightTextBox("canvasHeight", "canvas");
 
     generalSelector.addParagraph("Change Background:");
 
@@ -42,15 +60,9 @@ const init = () => {
     attributeSelector = new Selector("Attributes", "attributeSelector","attributeSelector");//attributes
     attributeSelector.showSelector();
 
+    //event listeners\/\/\/\/
 
-    //canvas test
-    canvas = new Canvas(600,400,0,0,"canvas");
-    canvas.createCanvas();
-    dragElement(document.getElementById(("canvasWindow")));
-    canvas.drawCanvasRect();
-    canvas.clearCanvas();
-    canvas.canvasBackground();
-    canvas.canvasBackground();
+    
     
 };
 
