@@ -61,7 +61,7 @@ footer{
 h4{
 	background-color: #4286f4;
 	/*width: 100%;*/
-	height: 2.25vh;
+	height: 3vh;
 	color: white;
 	margin: 0;
 	padding:  4px;
@@ -109,6 +109,7 @@ canvas{
   	background-size: 20px 20px;
   	background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   	margin: 10px;
+  	background-color: white;
 }
 .canvasWindow {
     border: 1px solid #d3d3d3;
