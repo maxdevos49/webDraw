@@ -32,46 +32,55 @@ const init = () => {
 
     //in the future make this work through json??  \/\/\/\/
     /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/General Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    generalSelector = new Selector("General", "generalSelector","generalSelector");//general selector
-    generalSelector.showSelector();//create the selector
-    generalSelector.addParagraph("Save Canvas:");
-    generalSelector.addDownloadLink("download", "canvas", "download");
-    generalSelector.addParagraph("Canvas Size:");
-    generalSelector.addWidthTextBox("canvasWidth", canvas.id, canvas.width);
-    generalSelector.addHeightTextBox("canvasHeight", canvas.id, canvas.height);
+    Selector.createSelector({
+        "title":"General",
+        "locationId":"generalSelector",
+        "content":[{
+            "header": "Save",
+            "type": "link",
+            "targetId": "canvas",
+            "action": "download"
+        },{
+            "header": "Canvas Size: ",
+            "type": "text",
+            "targetId":"none",
+            "action":"none"
+        }]
+    });
 
-    generalSelector.addParagraph("Change Background:");
-    generalSelector.addButton("Change Background", "changeBackground", "canvas.canvasBackground()");
+    // {//required if exist
+    //         "header": "",
+    //         "type": "",
+    //         "targetId":"",
+    //         "action":""
+    // }
+
+    // generalSelector.addParagraph("Save Canvas:");
+    // generalSelector.addDownloadLink("download", "canvas", "download");
+    // generalSelector.addParagraph("Canvas Size:");
+    // generalSelector.addWidthTextBox("canvasWidth", canvas.id, canvas.width);
+    // generalSelector.addHeightTextBox("canvasHeight", canvas.id, canvas.height);
+
+    // generalSelector.addParagraph("Change Background:");
+    // generalSelector.addButton("Change Background", "changeBackground", "canvas.canvasBackground()");
 
 
-    shapeSelector = new Selector("Shapes", "generalSelector","shapeSelector");//shape selector
-    shapeSelector.showSelector();
-    shapeSelector.addTableofButtons(
-    {
-        "header": "Shapes",
-        "shapes": [
-            {"shape": "rectangle"},
-            {"shape": "circle"},
-            {"shape": "square"},
-            {"shape": "star"}
-            ],
-        "data":""
+    // shapeSelector = new Selector("Shapes", "generalSelector","shapeSelector");//shape selector
+    // shapeSelector.showSelector();
+    // shapeSelector.addTableofButtons();
 
-    }
-    );
+    // colorSelector = new Selector("Color", "generalSelector","colorSelector");//color selector
+    // colorSelector.showSelector();
 
-    colorSelector = new Selector("Color", "generalSelector","colorSelector");//color selector
-    colorSelector.showSelector();
+    // settingsSelector = new Selector("Settings", "generalSelector","settingsSelector");//settings
+    // settingsSelector.showSelector();
 
-    settingsSelector = new Selector("Settings", "generalSelector","settingsSelector");//settings
-    settingsSelector.showSelector();
+    // /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/Attributes Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
+    // attrShapeSelector = new Selector("Shapes", "attributeSelector","attrShapeSelector");//Shapes
+    // attrShapeSelector.showSelector();
 
-    /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/Attributes Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    attrShapeSelector = new Selector("Shapes", "attributeSelector","attrShapeSelector");//Shapes
-    attrShapeSelector.showSelector();
-
-    attributeSelector = new Selector("Attributes", "attributeSelector","attributeSelector");//attributes
-    attributeSelector.showSelector();
+    // attributeSelector = new Selector("Attributes", "attributeSelector","attributeSelector");//attributes
+    // attributeSelector.showSelector();
 
     //event listeners\/\/\/\/
 
