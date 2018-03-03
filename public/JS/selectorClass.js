@@ -26,102 +26,123 @@ class Selector {
 
  	//title and setup
  	parent.innerHTML += `\
- 	<h4 onClick="${data.title}.toggleView()">\
+ 	<h4 onClick="Action.toggleView('${data.title}')">\
  		<span id="${data.title}Arrow" class="toggleArrow">\
  		&#9654;\
  		</span>\
  		${data.title}\
  	</h4>\
- 	<div style="display:none;" id="${data.title}Body">\
+ 	<div class="selectorBody" style="display:none;" id="${data.title}Body">\
  	</div>`;
 
+ 	for(let section in data.content){
+
+ 		//let test = data.content[section];
+ 		//console.log(test.type);
+
+ 		switch(data.content[section].type){
+ 			case "button":
+ 				this.addButton(data,section);
+ 			break;
+ 			case "text":
+ 				this.addText(data,section);
+ 			break;
+ 			case "link":
+ 				this.addLink(data,section);
+ 			break;
+ 			case "textBox":
+ 				this.addTextBox(data,section);
+ 			break;
+ 			case "group":
+ 				this.addGroup(data,section);
+ 			break;
+ 			case "custom":
+ 				this.addCustom(data,section);
+ 			break;
+ 			default:
+ 				console.log("Invalid selector option!");
+ 			break;
+ 		}
+ 	}
+
  	
+	}
 
+	//private
+	static addHeading(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<h1>${data.content[section].header}</h1>`;
+	}
 
+	//private
+	static addText(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<p>${data.content[section].header}</p>`;
+	}
+
+	//private
+	static addTextBox(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<p>${data.content[section].header}<input id="${data.content[section].header + data.content[section].action}" type="text" ${this.getAction(data, section)} value="${data.content[section].value}"></p>`;
+	}
+
+	//private
+	static addButton(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<p><button id="${data.content[section].header}" ${this.getAction(data,section)}>${data.content[section].header}</button><p>`;
+	}
+
+	//private
+	static addLink(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `\
+		<p>\
+			<a id="${data.content[section].header}" href="${data.content[section].link}"  ${this.getAction(data,section)}>\
+			${data.content[section].header}\
+			</a>\
+		</p>`;
 
 	}
 
-	// constructor(title,asideId,objectName){
+	//
+	//
 
-	// 	this.title = title;
-	// 	this.aside = document.getElementById(asideId);
-	// 	this.name = objectName;
-	// }
+	static getAction(data,section){
+		switch(data.content[section].action){
+			case "download":
+				return `download='webDraw.png'\
+				 onclick="dataURL=document.getElementById('${data.content[section].targetId}').toDataURL();\
+				 document.getElementById('${data.content[section].header}').href = dataURL;"`;
 
-	// //use -> obj.showSelector();
-	// showSelector(){
-	// 	this.aside.innerHTML += `<h4 onClick="${this.name}.toggleView()"><span id="${this.name}Arrow" class="toggleArrow">&#9654;</span>${this.title}</h4><div style="display:none;" id="${this.name}Body"></div>`; 
-	// }
+			case "width":
+				return `onkeyup="Action.setWidth('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
-	// //use -> obj.addtoggleView();
-	// toggleView(){//show or hide a selectors contents
-	// 	let selectedSelector = document.getElementById(`${this.name}Body`);
-	// 	let toggleArrow = document.getElementById(`${this.name}Arrow`);
+			case "height":
+				return `onkeyup="Action.setHeight('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
-	//     if (selectedSelector.style.display === "none") {
-	//         selectedSelector.style.display = "block";
-	//         toggleArrow.innerHTML = "&#9661;";
-	//     } else {
-	//         selectedSelector.style.display = "none";
-	//         toggleArrow.innerHTML = "&#9654;";
-	//     }
-	// }
+			case "callFunction":
+				return `onclick="${data.content[section].functionCall}"`;
 
-	// //use -> obj.addHeading(<heading text>);
-	// addHeading(heading){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<h1>${heading}</h1>`;
-	// }
+			case "setTop":
+				console.log(data.content[section].targetId);
+				return `onkeyup="Action.setTop('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
-	// //use -> obj.addTextBox(<id>);
-	// addTextBox(id){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<input id="${id}" type="text">`;
-	// }
+			case "setLeft":
+				return `onkeyup="Action.setLeft('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
-	// //use -> obj.addParagraph(<paragraph text>);
-	// addParagraph(message){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<p>${message}</p>`;
-	// }
+			case "scaleX":
+				return "";
 
-	// //use -> obj.addButton(<button title>, <button id>,<action as a string>);
-	// addButton(title, id, action){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<p><button id="${id}" onclick="${action}">${title}</button><p>`;
-	// }
+			case "scaleY":
+				return "";
 
-	// addWidthTextBox(id, targetId, value){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<p>Width:<input id="${id}" type="text" value="${value}" onkeyup="updateElement.width(${targetId}, document.getElementById(id).value)">px</p>`;
-	// }
+			case "none":
+				return "";
+			default:
+				console.log("Invalid Action Type");
+			break;
+		}
+	}
 
-	// addHeightTextBox(id, targetId, value){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// 	selectorBody.innerHTML += `<p>Height:<input id="${id}" type="text" value="${value}" onkeyup="updateElement.height(${targetId}, document.getElementById(id).value)">px</p>`;
-	// }
-
-	// addDownloadLink(id, targetId, text){
-	// 	let selectorBody = document.getElementById(`${this.name}Body`);
-	// selectorBody.innerHTML += `<p><a id="${id}" href="#" download="webDraw.png" onclick="dataURL=document.getElementById('${targetId}').toDataURL();document.getElementById('${id}').href = dataURL">${text}</a></p>`;
-
-	// }
-
-	// addTableofButtons(data){
-
-	// 	//for (var i = 0; i < data.length; ++i) {
-
-	// 	//}
-
-	// }
-
-//    translate things below into this classß
-
-	// const setColor = () => {
-	//     currentColor = document.getElementById("currentShapeC").value;
-	//     console.log(currentColor);
-	// };
-
-	
 
 }

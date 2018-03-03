@@ -10,16 +10,9 @@
 //add a scripting option
 //multi canvas support
 //add layering support
+//add json ui creation <-- finished
 //further improve classes
 //release this!!! and make bank
-
-let generalSelector;
-let shapeSelector;
-let colorSelector;
-let settingsSelector;
-
-let attrShapeSelector;
-let attributeSelector;
 
 let canvas;
 
@@ -39,35 +32,92 @@ const init = () => {
             "header": "Save",
             "type": "link",
             "targetId": "canvas",
-            "action": "download"
+            "action": "download",
+            "link": "#"
         },{
             "header": "Canvas Size: ",
             "type": "text",
-            "targetId":"none",
-            "action":"none"
+        },{
+            "header":"Width:",
+            "type": "textBox",
+            "action": "width",
+            "targetId": "canvas",
+            "value": canvas.width
+        },{
+            "header":"Height:",
+            "type": "textBox",
+            "action": "height",
+            "targetId": "canvas",
+            "value": canvas.height
+        },{
+            "header":"Canvas Position:",
+            "type": "text"
+        },{
+            "header": "Left:",
+            "type": "textBox",
+            "action": "setLeft",
+            "targetId": "canvasWindow",
+            "value": 560
+        },{
+            "header": "Top:",
+            "type": "textBox",
+            "action": "setTop",
+            "targetId": "canvasWindow",
+            "value": 300
+        },{
+            "header":"Canvas Background:",
+            "type": "text"
+        },{
+            "header": "Change",
+            "type": "button",
+            "action": "callFunction",
+            "functionCall": "canvas.canvasBackground();"
         }]
     });
 
-    // {//required if exist
-    //         "header": "",
-    //         "type": "",
-    //         "targetId":"",
-    //         "action":""
-    // }
+    Selector.createSelector({
+        "title":"Drawing",
+        "locationId":"generalSelector",
+        "content": [{
+            "header": "Shapes",
+            "type": "text"
+        },{
+            "header": "Pencils",
+            "type": "text"
+        },{
+            "header": "TextBox",
+            "type": "text"
+        }]
+    });
 
-    // generalSelector.addParagraph("Save Canvas:");
-    // generalSelector.addDownloadLink("download", "canvas", "download");
-    // generalSelector.addParagraph("Canvas Size:");
-    // generalSelector.addWidthTextBox("canvasWidth", canvas.id, canvas.width);
-    // generalSelector.addHeightTextBox("canvasHeight", canvas.id, canvas.height);
+    Selector.createSelector({
+        "title":"Color",
+        "locationId":"generalSelector"
+    });
 
-    // generalSelector.addParagraph("Change Background:");
-    // generalSelector.addButton("Change Background", "changeBackground", "canvas.canvasBackground()");
+    Selector.createSelector({
+        "title":"Settings",
+        "locationId":"generalSelector",
+        "content": [{
+            "header": "Reset Canvas:",
+            "type": "text"
+        },{
+            "header": "reset",
+            "type": "button",
+            "action": "callFunction",
+            "functionCall": "canvas.clearCanvas();"
+        }]
+    });
 
+    Selector.createSelector({
+        "title":"Properties",
+        "locationId":"attributeSelector"
+    });
 
-    // shapeSelector = new Selector("Shapes", "generalSelector","shapeSelector");//shape selector
-    // shapeSelector.showSelector();
-    // shapeSelector.addTableofButtons();
+    Selector.createSelector({
+        "title":"Attributes",
+        "locationId":"attributeSelector"
+    });
 
     // colorSelector = new Selector("Color", "generalSelector","colorSelector");//color selector
     // colorSelector.showSelector();
@@ -81,8 +131,6 @@ const init = () => {
 
     // attributeSelector = new Selector("Attributes", "attributeSelector","attributeSelector");//attributes
     // attributeSelector.showSelector();
-
-    //event listeners\/\/\/\/
 
     
     

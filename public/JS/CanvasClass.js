@@ -47,6 +47,8 @@ class Canvas {
 		
 	}
 
+	
+
 	drawCanvasRect(){
 		var canvasFrame = document.getElementById(this.id);
 		var context = canvasFrame.getContext("2d");
