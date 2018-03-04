@@ -21,7 +21,12 @@ class Canvas {
 		var canvasFrame = document.getElementById(this.id);
 		var context = canvasFrame.getContext("2d");
 
-		context.fillRect(100,100,100,100);
+		context.fillStyle = "blue";
+
+		context.fillRect(50,50,50,50);
+		context.fillRect(500,50,50,50);
+		context.fillRect(300,175,50,50);
+		context.fillRect(50,300,500,50);
 	}
 
 	deleteCanvas(){
@@ -49,11 +54,32 @@ class Canvas {
 
 	
 
-	drawCanvasRect(){
+	drawFillRect(width,height){
 		var canvasFrame = document.getElementById(this.id);
 		var context = canvasFrame.getContext("2d");
-		context.fillRect(300,200,100,100);
+		context.fillStyle = currentColor;
+		context.fillRect(100,100,width,height);
 	}
+
+	static drawEmptyRect(){
+		var canvasFrame = document.getElementById("canvas");
+		var context = canvasFrame.getContext("2d");
+		context.strokesize = "2px";
+		context.rect(100,100,100,100);
+	}
+
+	static drawCircle(){
+
+	}
+
+	
+
+	static drawStar(){
+
+	}
+
+
+
 
 }
 

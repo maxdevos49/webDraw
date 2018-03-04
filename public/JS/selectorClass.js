@@ -53,6 +53,9 @@ class Selector {
  			case "textBox":
  				this.addTextBox(data,section);
  			break;
+ 			case "color":
+ 				this.addColorInput(data,section);
+ 			break;
  			case "group":
  				this.addGroup(data,section);
  			break;
@@ -71,41 +74,43 @@ class Selector {
 	//private
 	static addHeading(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
-		selectorBody.innerHTML += `<h1>${data.content[section].header}</h1>`;
+		selectorBody.innerHTML += `<h1 class="contentText">${data.content[section].header}</h1>`;
 	}
 
 	//private
 	static addText(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
-		selectorBody.innerHTML += `<p>${data.content[section].header}</p>`;
+		selectorBody.innerHTML += `<p class="textHeader" >${data.content[section].header}</p>`;
 	}
 
 	//private
 	static addTextBox(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
-		selectorBody.innerHTML += `<p>${data.content[section].header}<input id="${data.content[section].header + data.content[section].action}" type="text" ${this.getAction(data, section)} value="${data.content[section].value}"></p>`;
+		selectorBody.innerHTML += `<p class="contentText">${data.content[section].header}\n<input id="${data.content[section].header + data.content[section].action}" type="text" ${this.getAction(data, section)} value="${data.content[section].value}"></p>`;
 	}
 
 	//private
 	static addButton(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
-		selectorBody.innerHTML += `<p><button id="${data.content[section].header}" ${this.getAction(data,section)}>${data.content[section].header}</button><p>`;
+		selectorBody.innerHTML += `<p class="contentText"><button id="${data.content[section].header}" ${this.getAction(data,section)}>${data.content[section].header}</button><p>`;
 	}
 
 	//private
 	static addLink(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
 		selectorBody.innerHTML += `\
-		<p>\
+		<p class="contentText">\
 			<a id="${data.content[section].header}" href="${data.content[section].link}"  ${this.getAction(data,section)}>\
 			${data.content[section].header}\
 			</a>\
 		</p>`;
-
 	}
 
-	//
-	//
+	//private 
+	static addColorInput(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<p class="contentText"><input id="${data.content[section].header + data.content[section].action}" type="color" value="#1a71c9" ${this.getAction(data, section)}></p>`;
+	}
 
 	static getAction(data,section){
 		switch(data.content[section].action){
@@ -115,26 +120,29 @@ class Selector {
 				 document.getElementById('${data.content[section].header}').href = dataURL;"`;
 
 			case "width":
-				return `onkeyup="Action.setWidth('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
+				return `onchange="Action.setWidth('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
 			case "height":
-				return `onkeyup="Action.setHeight('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
+				return `onchange="Action.setHeight('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
 			case "callFunction":
 				return `onclick="${data.content[section].functionCall}"`;
 
 			case "setTop":
 				console.log(data.content[section].targetId);
-				return `onkeyup="Action.setTop('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
+				return `onchange="Action.setTop('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
 			case "setLeft":
-				return `onkeyup="Action.setLeft('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
+				return `onchange="Action.setLeft('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
 			case "scaleX":
 				return "";
 
 			case "scaleY":
 				return "";
+
+			case "updateVar":
+				return `onchange="${data.content[section].targetVar} = document.getElementById('${data.content[section].header + data.content[section].action}').value;console.log(currentColor);"`;
 
 			case "none":
 				return "";
