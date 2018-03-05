@@ -164,7 +164,18 @@ const init = () => {
         "title":"Attributes",
         "locationId":"attributeSelector"
     });
-    
+
+    Selector.createSelector({
+        "title":"Mason is awesome",
+        "locationId":"attributeSelector",
+        "content":[{
+            "header":"Redraw face!",
+            "type":"button",
+            "action":"callFunction",
+            "functionCall":"var test = document.getElementById('canvas');var context = test.getContext('2d');context.fillStyle=currentColor;context.fillRect(50,50,50,50);context.fillRect(500,50,50,50);context.fillRect(300,175,50,50);context.fillRect(50,300,500,50);"
+        }]
+    })
+    //document.getElementById('canvas').getContext('2d').fillRect(50,50,50,50);document.getElementById('canvas').getContext('2d').fillRect(500,50,50,50);document.getElementById('canvas').getContext('2d').fillRect(300,175,50,50);document.getElementById('canvas').getContext('2d').fillRect(50,300,500,50);
 };
 
 
