@@ -1,7 +1,3 @@
-/*global require:false, console:false, __dirname: false, document:false, window: false, Selector: false, Canvas:false*/
-// jshint esversion: 6 
-/*jslint node:true*/
-"use strict";
 
 class Action{
 

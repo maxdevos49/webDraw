@@ -1,8 +1,3 @@
-/*global require:false, console:false, __dirname: false, document:false, window: false, Selector: false, Canvas:false,dragElement:false*/
-// jshint esversion: 6 
-/*jslint node:true*/
-"use strict";
-
 //TODO
 //make shape drawing actually work
 //add color support
@@ -16,15 +11,13 @@
 //when resizing shapes make mouse change to arrows to indicate slid movement
 //change the canvas class to json support
 //refractor everything atleast once
-//
 //multi canvas support
 //add layering support
 //add json ui creation <-- finished
 //further improve classes
-//release this!!! and make bank
 
-let canvas;
-let currentColor;
+let canvas = [];
+let currentColor = "blue";
 let newShapeWidth = 100;
 let newShapeHeight = 100;
 let shapes;
@@ -32,14 +25,18 @@ let shapes;
 const init = () => {
 
     //canvas Creation
-    canvas = new Canvas(600,400,0,0,"canvas");
-    canvas.createCanvas();
-    dragElement(document.getElementById(("canvasWindow")));
+    canvas[0] = {
+        "title": "Canvas",
+        "locationId": "canvasContainer",
+        "width": 100,
+        "height": 100,
+        "draggable": true,
+        "background": false
+        //"events": ["onmousemove","onmouseover","onmousedown"]
+    }
 
-    //in the future make this work through json??  \/\/\/\/
-    /* /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/General Aside\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-
-
+    Canvas.createCanvas(canvas[0]);
+    
     Selector.createSelector({
         "title":"Drawing",
         "locationId":"generalSelector",
@@ -50,7 +47,15 @@ const init = () => {
             "header": "rectangle",
             "type": "button",
             "action": "callFunction",
-            "functionCall": "canvas.drawFillRect(newShapeWidth,newShapeHeight);"
+            "functionCall": "Canvas.drawFillRect(canvas[0], newShapeWidth,newShapeHeight);"
+        },{
+            "header": "circle",
+            "type": "button",
+            "action": "none"
+        },{
+            "header": "Star",
+            "type": "button",
+            "action": "none"
         },{
             "header": "Shape Size:",
             "type": "text"
@@ -97,7 +102,7 @@ const init = () => {
         },{
             "header": "Download",
             "type": "link",
-            "targetId": "canvas",
+            "targetId": "Canvas",
             "action": "download",
             "link": "#"
         },{
@@ -107,14 +112,14 @@ const init = () => {
             "header":"Width:",
             "type": "textBox",
             "action": "width",
-            "targetId": "canvas",
-            "value": canvas.width
+            "targetId": "Canvas",
+            "value": 100
         },{
             "header":"Height:",
             "type": "textBox",
             "action": "height",
-            "targetId": "canvas",
-            "value": canvas.height
+            "targetId": "Canvas",
+            "value": 100
         },{
             "header":"Canvas Position:",
             "type": "text"
@@ -122,13 +127,13 @@ const init = () => {
             "header": "Left:",
             "type": "textBox",
             "action": "setLeft",
-            "targetId": "canvasWindow",
+            "targetId": "CanvasWindow",
             "value": 560
         },{
             "header": "Top:",
             "type": "textBox",
             "action": "setTop",
-            "targetId": "canvasWindow",
+            "targetId": "CanvasWindow",
             "value": 300
         },{
             "header":"Canvas Background:",
@@ -137,7 +142,7 @@ const init = () => {
             "header": "Change",
             "type": "button",
             "action": "callFunction",
-            "functionCall": "canvas.canvasBackground();"
+            "functionCall": "Canvas.canvasBackground(canvas[0]);"
         }]
     });
 
@@ -151,7 +156,7 @@ const init = () => {
             "header": "reset",
             "type": "button",
             "action": "callFunction",
-            "functionCall": "canvas.clearCanvas();"
+            "functionCall": "Canvas.clearCanvas(canvas[0]);"
         }]
     });
 
@@ -166,16 +171,22 @@ const init = () => {
     });
 
     Selector.createSelector({
-        "title":"Mason is awesome",
+        "title":"Masons Test",
         "locationId":"attributeSelector",
         "content":[{
             "header":"Redraw face!",
             "type":"button",
             "action":"callFunction",
-            "functionCall":"var test = document.getElementById('canvas');var context = test.getContext('2d');context.fillStyle=currentColor;context.fillRect(50,50,50,50);context.fillRect(500,50,50,50);context.fillRect(300,175,50,50);context.fillRect(50,300,500,50);"
+            "functionCall":"var test = document.getElementById('Canvas');\
+            var context = test.getContext('2d');\
+            context.fillStyle=currentColor;\
+            context.fillRect(50,50,50,50);\
+            context.fillRect(500,50,50,50);\
+            context.fillRect(300,175,50,50);\
+            context.fillRect(50,300,500,50);"
         }]
     })
-    //document.getElementById('canvas').getContext('2d').fillRect(50,50,50,50);document.getElementById('canvas').getContext('2d').fillRect(500,50,50,50);document.getElementById('canvas').getContext('2d').fillRect(300,175,50,50);document.getElementById('canvas').getContext('2d').fillRect(50,300,500,50);
+    
 };
 
 

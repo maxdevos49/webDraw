@@ -1,0 +1,9 @@
+{
+  "browser": true,
+  "esnext": true,
+  "globals": {"console": true},
+  "strict": "true",
+  "undef": true,
+  "unused": true,
+  "node": true
+}

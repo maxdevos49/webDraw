@@ -1,26 +1,7 @@
-/*global require:false, console:false, __dirname: false, document:false, window: false*/
-/*jshint esversion: 6 */
-/*jslint node: true*/
-"use strict";
 
-/**
-*
-*/
 class Selector {
 
 	static createSelector(data){
-	
-	//basic json format
- //    {
- // 	   "title":"",
- //        "locationId":"",
- //        "content":[{
- //            "header": "",
- //            "type": "",
- //            "targetId": "",
- //            "action": ""
- //        }]
- //    }
 
  	let parent = document.getElementById(data.locationId);
 
@@ -129,7 +110,6 @@ class Selector {
 				return `onclick="${data.content[section].functionCall}"`;
 
 			case "setTop":
-				console.log(data.content[section].targetId);
 				return `onchange="Action.setTop('${data.content[section].targetId}', document.getElementById('${data.content[section].header + data.content[section].action}').value)"`;
 
 			case "setLeft":
@@ -154,3 +134,4 @@ class Selector {
 
 
 }
+
