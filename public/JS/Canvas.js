@@ -1,3 +1,4 @@
+/*global dragElement:false, Events:false*/
 
 class Canvas {
 
@@ -11,13 +12,23 @@ class Canvas {
 			</div>
 				<canvas id="${data.title}" width="${data.width}" height="${data.height}"></canvas>
 			<div class="canvasFooter">
-			<span class="footerCords">Mouse X: 100px, Y: 234px</span>
+				<span class="footerCords" id="footerCords">Mouse X: 100px, Y: 234px</span>
 			</div>
 		</div>`;
 
 		if (data.draggable){
 			dragElement(document.getElementById(`${data.title}Window`));
 		}
+
+		//add Event listeners
+
+		let canvasFrame = document.getElementById(data.title);
+
+		canvasFrame.addEventListener('mousedown', Events.mouseDown);
+		canvasFrame.addEventListener('mouseup', Events.mouseUp);
+		canvasFrame.addEventListener('mousemove', Events.mouseMove);
+		canvasFrame.addEventListener('mouseout',Events.mouseOut);
+		canvasFrame.addEventListener('mouseover',Events.mouseover);
 		
 	}
 

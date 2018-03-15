@@ -1,9 +1,13 @@
 {
   "browser": true,
   "esnext": true,
-  "globals": {"console": true},
+  "globals": {
+  	"console": false,
+  	 "Selector": true,
+  	 "shapes":true},
   "strict": "true",
   "undef": true,
   "unused": true,
-  "node": true
+  "node": true,
+
 }

@@ -1,4 +1,4 @@
-
+/*global console: false*/
 class Selector {
 
 	static createSelector(data){
@@ -39,6 +39,9 @@ class Selector {
  			break;
  			case "group":
  				this.addGroup(data,section);
+ 			break;
+ 			case "list":
+ 				this.addList(data,section);
  			break;
  			case "custom":
  				this.addCustom(data,section);
@@ -91,6 +94,11 @@ class Selector {
 	static addColorInput(data, section){
 		let selectorBody = document.getElementById(`${data.title}Body`);
 		selectorBody.innerHTML += `<p class="contentText"><input id="${data.content[section].header + data.content[section].action}" type="color" value="#1a71c9" ${this.getAction(data, section)}></p>`;
+	}
+
+	static addList(data, section){
+		let selectorBody = document.getElementById(`${data.title}Body`);
+		selectorBody.innerHTML += `<p id="${data.content[section].header}">Im A List Element. I'll work later</p>`;
 	}
 
 	static getAction(data,section){
